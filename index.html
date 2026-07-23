@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Phantom — Interactive Abstract Portfolio & Refractive Sound Art. Designed using liquid glass, 3D tilt, and dynamic audio synthesis.">
+  <title>Phantom — Creative Archive</title>
+  <!-- Google Fonts for brutalist/minimalist typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&family=Syne:wght@500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Light Effects in Background -->
+  <div class="ambient-glow">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <!-- SVG Liquid Glass Filters (Invisibly loaded) -->
+  <svg aria-hidden="true" class="svg-filters" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+    <defs>
+      <!-- High Refraction Glass Filter -->
+      <filter color-interpolation-filters="sRGB" height="200%" id="liquid-glass-filter" width="200%" x="-50%" y="-50%">
+        <feTurbulence baseFrequency="0.015 0.015" numOctaves="2" result="turbulence" seed="1" type="fractalNoise" />
+        <feGaussianBlur in="turbulence" result="blurredNoise" stdDeviation="4" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" result="displaced" scale="40" xChannelSelector="R" yChannelSelector="B" />
+        <feGaussianBlur in="displaced" result="finalBlur" stdDeviation="2" />
+        <feComposite in="SourceGraphic" in2="finalBlur" operator="over" />
+      </filter>
+      <!-- Fluid Turbulence Filter for interactive button states -->
+      <filter color-interpolation-filters="sRGB" height="200%" id="liquid-btn-filter" width="200%" x="-50%" y="-50%">
+        <feTurbulence baseFrequency="0.04" numOctaves="1" result="turbulence" seed="1" type="fractalNoise" />
+        <feGaussianBlur in="turbulence" result="blurredNoise" stdDeviation="1" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" result="displaced" scale="15" xChannelSelector="R" yChannelSelector="B" />
+        <feComposite in="SourceGraphic" in2="displaced" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
+  <main class="page-container">
+    <!-- Centered Card Wrapper for 3D Tilt calculation -->
+    <div class="card-wrapper" id="card-wrapper">
+      
+      <!-- Card Label/Title (Floating context header) -->
+      <div class="card-metadata-header">
+        <span class="meta-label">PHANTOM // ARCHIVE</span>
+        <span class="meta-status">SYSTEM ACTIVE</span>
+        <span class="meta-date">EST. 27-3-15</span>
+      </div>
+
+      <!-- The Main Interactive Card -->
+      <article class="glass-panel portfolio-card" id="portfolio-card">
+        
+        <!-- Animated Fluid Fluidity Inside Card (Underneath Content) -->
+        <div class="card-fluid-bg">
+          <div class="fluid-blob blob-blue"></div>
+          <div class="fluid-blob blob-white-1"></div>
+          <div class="fluid-blob blob-white-2"></div>
+        </div>
+
+        <!-- Glass overlay for refractive look -->
+        <div class="glass-refraction-layer"></div>
+
+        <!-- Scrollable container inside the card -->
+        <div class="card-scroll-container" id="scroll-container">
+          
+          <!-- SECTION 1: HERO POSTER (Replica of reference image layout) -->
+          <section class="scroll-section hero-poster-section" id="hero">
+            <div class="poster-grid">
+              
+              <!-- Top Header Information -->
+              <div class="poster-top-right font-mono">
+                <span class="poster-title-sub">De—<br>Vision<br>012</span>
+              </div>
+              
+              <div class="poster-date font-mono">
+                <span>27-3-15</span>
+              </div>
+
+              <!-- Main Typographic Title -->
+              <div class="poster-main-title">
+                <h1>Phantom</h1>
+                <div class="poster-sub-labels font-mono">
+                  <span>Ostgut Ton</span>
+                  <span>Cadenza Records</span>
+                  <span>Non standard Production</span>
+                </div>
+              </div>
+
+              <!-- Bottom Information -->
+              <div class="poster-bottom-center font-mono">
+                <span class="bold-text">Vnc<br>Brg</span>
+              </div>
+
+              <div class="poster-bottom-right font-mono">
+                <span>From 11.30 PM</span>
+                <span>Limited capacity</span>
+                <span>Ingresso riservato ai soli soci</span>
+              </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator font-mono">
+              <span>EXPLORE ARCHIVE</span>
+              <div class="indicator-arrow">
+                <svg width="12" height="18" viewBox="0 0 12 18" fill="none">
+                  <path d="M6 1V17M6 17L1 12M6 17L11 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION 2: BIOGRAPHY / MANIFESTO -->
+          <section class="scroll-section manifesto-section" id="about">
+            <h2 class="section-title">Manifesto</h2>
+            <div class="manifesto-content">
+              <p class="lead-text">
+                Exploring the tension between physical constraints and digital infinity. Translating algorithms into soundwaves, and light into tactile structures.
+              </p>
+              <p class="body-text">
+                Phantom operates at the intersection of electronic music production and interactive design. Drawing inspiration from early club culture posters, modular synthesis, and glass optics, this archive represents a digital reflection of structural soundscapes.
+              </p>
+              
+              <div class="manifesto-stats font-mono">
+                <div class="stat-item">
+                  <span class="stat-num">4.0K+</span>
+                  <span class="stat-label">Hours of Audio</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-num">120Hz</span>
+                  <span class="stat-label">Base Resonance</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-num">0.05</span>
+                  <span class="stat-label">Turbulence Scale</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION 3: SELECTED WORKS (with Sibling Dimming) -->
+          <section class="scroll-section works-section" id="works">
+            <h2 class="section-title">Selected Works</h2>
+            
+            <div class="projects-list">
+              <div class="project-item">
+                <div class="project-meta font-mono">01 / DUST AND REACTION</div>
+                <h3 class="project-title">Liquid Forms</h3>
+                <p class="project-desc">A WebGL-based refractive shader translating audio frequencies into dynamic morphing glass shapes.</p>
+                <div class="project-tags font-mono">
+                  <span>GLSL</span><span>THREE.JS</span><span>WEB AUDIO</span>
+                </div>
+              </div>
+
+              <div class="project-item">
+                <div class="project-meta font-mono">02 / MODULAR SCAPES</div>
+                <h3 class="project-title">Aural Landscape</h3>
+                <p class="project-desc">Algorithmic generative sound installation that interprets live spatial weather datasets as rhythmic structures.</p>
+                <div class="project-tags font-mono">
+                  <span>MAX/MSP</span><span>WEB SOCKETS</span><span>NODE.JS</span>
+                </div>
+              </div>
+
+              <div class="project-item">
+                <div class="project-meta font-mono">03 / OPTO-ACOUSTICS</div>
+                <h3 class="project-title">Prismatic Core</h3>
+                <p class="project-desc">A physical hardware installation mapping light intensity onto custom analog synthesizer patches.</p>
+                <div class="project-tags font-mono">
+                  <span>ARDUINO</span><span>CV/GATE</span><span>REACTIVE LIGHT</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION 4: INTERACTIVE SOUND & VISUAL LAB -->
+          <section class="scroll-section synth-section" id="lab">
+            <h2 class="section-title">Resonance Lab</h2>
+            
+            <p class="lab-intro font-mono">
+              Engage the browser audio engine below to synthesize real-time ambient waveforms. The controls will warp both the sound and the visual density of the background.
+            </p>
+
+            <div class="synth-panel glass-panel">
+              <!-- Audio Activation Button -->
+              <button class="synth-toggle-btn" id="synth-toggle" type="button">
+                <span class="btn-ripple"></span>
+                <span class="btn-text" id="btn-text">INITIALIZE AUDIO PATCH</span>
+              </button>
+
+              <!-- Live Audio Visualizer / Scope -->
+              <div class="visualizer-container">
+                <canvas id="scope-canvas" class="scope-canvas"></canvas>
+                <div class="no-audio-fallback" id="scope-fallback">
+                  <span>AWAITING PATCH INITIALIZATION...</span>
+                </div>
+              </div>
+
+              <!-- Controls Sliders -->
+              <div class="synth-controls">
+                <div class="control-group">
+                  <div class="control-header font-mono">
+                    <span>CUTOFF FREQUENCY</span>
+                    <span id="val-freq" class="val-display">880 Hz</span>
+                  </div>
+                  <input type="range" class="synth-slider" id="slider-freq" min="80" max="2500" value="880" disabled>
+                </div>
+
+                <div class="control-group">
+                  <div class="control-header font-mono">
+                    <span>LFO SHIMMER SPEED</span>
+                    <span id="val-lfo" class="val-display">3 Hz</span>
+                  </div>
+                  <input type="range" class="synth-slider" id="slider-lfo" min="1" max="15" value="3" disabled>
+                </div>
+
+                <div class="control-group">
+                  <div class="control-header font-mono">
+                    <span>RESONANCE SHAPE</span>
+                    <span id="val-q" class="val-display">4.0</span>
+                  </div>
+                  <input type="range" class="synth-slider" id="slider-q" min="1" max="15" step="0.5" value="4" disabled>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION 5: CONTACT & FOOTER -->
+          <section class="scroll-section contact-section" id="contact">
+            <h2 class="section-title font-mono">CONNECT</h2>
+            
+            <div class="contact-methods">
+              <a href="mailto:archive@phantom.net" class="contact-link">
+                <span class="link-label font-mono">ENVELOPE</span>
+                <span class="link-val">archive@phantom.net</span>
+              </a>
+              <a href="#" class="contact-link">
+                <span class="link-label font-mono">TELEGRAM</span>
+                <span class="link-val">@phantom_sound_lab</span>
+              </a>
+              <a href="#" class="contact-link">
+                <span class="link-label font-mono">SOUNDCLOUD</span>
+                <span class="link-val">phantom.records</span>
+              </a>
+              <a href="#" class="contact-link">
+                <span class="link-label font-mono">REPOSITORY</span>
+                <span class="link-val">github/phantom-refract</span>
+              </a>
+            </div>
+
+            <footer class="card-footer font-mono">
+              <p>Designed with liquid glass filters & Web Audio.</p>
+              <p>© 2026 Phantom. All Rights Reserved.</p>
+            </footer>
+          </section>
+
+        </div>
+      </article>
+      
+      <!-- Interactive Scroll Bar on the side of the card -->
+      <div class="card-scrollbar-track">
+        <div class="card-scrollbar-thumb" id="scrollbar-thumb"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
