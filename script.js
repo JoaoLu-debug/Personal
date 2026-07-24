@@ -36,13 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const rotateX = normY * -12;
     const rotateY = normX * 12;
     
-    // Apply transform to card
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    
     // Apply opposite parallax translations to texts/graphics inside the card for depth
     const posterTitle = card.querySelector('.poster-main-title');
     const posterTopRight = card.querySelector('.poster-top-right');
     const posterBottomRight = card.querySelector('.poster-bottom-right');
+    
+    // Quick transition for responsive mouse tracking
+    card.style.transition = 'transform 0.08s cubic-bezier(0.25, 1, 0.5, 1)';
+    if (posterTitle) posterTitle.style.transition = 'transform 0.08s cubic-bezier(0.25, 1, 0.5, 1)';
+    if (posterTopRight) posterTopRight.style.transition = 'transform 0.08s cubic-bezier(0.25, 1, 0.5, 1)';
+    if (posterBottomRight) posterBottomRight.style.transition = 'transform 0.08s cubic-bezier(0.25, 1, 0.5, 1)';
+
+    // Apply transform to card
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     
     if (posterTitle) posterTitle.style.transform = `translate3d(${normX * -15}px, ${normY * -15}px, 20px)`;
     if (posterTopRight) posterTopRight.style.transform = `translate3d(${normX * -8}px, ${normY * -8}px, 10px)`;
@@ -55,13 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cardWrapper.addEventListener('mouseleave', () => {
     isMoving = false;
-    // Smooth reset
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     
     const posterTitle = card.querySelector('.poster-main-title');
     const posterTopRight = card.querySelector('.poster-top-right');
     const posterBottomRight = card.querySelector('.poster-bottom-right');
-    
+
+    // Smooth, slow reset transitions (no snap)
+    card.style.transition = 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+    if (posterTitle) posterTitle.style.transition = 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+    if (posterTopRight) posterTopRight.style.transition = 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+    if (posterBottomRight) posterBottomRight.style.transition = 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+
+    // Reset positions slowly and elegantly
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     if (posterTitle) posterTitle.style.transform = 'translate3d(0, 0, 0)';
     if (posterTopRight) posterTopRight.style.transform = 'translate3d(0, 0, 0)';
     if (posterBottomRight) posterBottomRight.style.transform = 'translate3d(0, 0, 0)';
