@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Start Synth
       synthActive = true;
       synthToggle.classList.add('active');
-      btnText.textContent = 'MUTE AUDIO ENGINE';
+      btnText.textContent = 'MUTE AV ENGINE';
       scopeFallback.style.opacity = '0';
       
       // Enable slider inputs
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Mute Synth
       synthActive = false;
       synthToggle.classList.remove('active');
-      btnText.textContent = 'INITIALIZE AUDIO PATCH';
+      btnText.textContent = 'INITIALIZE AV PATCH';
       scopeFallback.style.opacity = '1';
       
       // Disable inputs
