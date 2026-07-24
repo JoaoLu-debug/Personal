@@ -357,4 +357,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', resizeCanvas);
   synthToggle.addEventListener('click', toggleSynth);
+
+  // --- PRESSURE-SENSITIVE VARIABLE TYPOGRAPHY ---
+  const letters = document.querySelectorAll('.pressure-heading span');
+  let mousePos = { x: 0, y: 0 };
+
+  window.addEventListener('mousemove', (e) => {
+    mousePos.x = e.clientX;
+    mousePos.y = e.clientY;
+  });
+
+  function updatePressureTypography() {
+    letters.forEach(letter => {
+      const rect = letter.getBoundingClientRect();
+      const letterCenter = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+
+      const dist = Math.sqrt(
+        Math.pow(mousePos.x - letterCenter.x, 2) + 
+        Math.pow(mousePos.y - letterCenter.y, 2)
+      );
+
+      const maxDist = 300;
+      const proximity = Math.max(0, Math.min(1, (maxDist - dist) / maxDist));
+
+      // Interpolate wght from 200 to 900 (Mona Sans weight range) and wdth from 75 to 125
+      const wght = 200 + (proximity * 700);
+      const wdth = 75 + (proximity * 50);
+
+      letter.style.fontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}`;
+    });
+    requestAnimationFrame(updatePressureTypography);
+  }
+
+  // Only run if the heading exists on the page
+  if (letters.length > 0) {
+    updatePressureTypography();
+  }
 });

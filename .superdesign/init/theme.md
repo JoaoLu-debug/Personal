@@ -1,3 +1,35 @@
+# Design Tokens & Theme - Phantom Portfolio
+
+## Part 1 — Compact Token Summary
+
+### Colors
+- **Background**: `#000000` (deep black viewport)
+- **Text (Dark)**: `#000000` (used over light shifting gradients in card)
+- **Text (Light)**: `#ffffff` (default body text)
+- **Accents**:
+  - Electric Blue: `#0f4eff`
+  - Lavender: `#d6e0ff`
+  - Cyan: `#00f0ff`
+- **Muted**:
+  - Dark: `rgba(0, 0, 0, 0.6)`
+  - Light: `rgba(255, 255, 255, 0.5)`
+
+### Typography
+- **Headings (Display)**: `Syne`, sans-serif (bold, geometric, wide brutalist)
+- **Body text**: `Outfit`, sans-serif (clean geometric geometric)
+- **Code/Monospace**: `Space Mono`, monospace
+- **Brutalist labels & Header**: `Riosark`, `Outfit`, `Space Mono`, sans-serif (modern futuristic tech font loaded via `@font-face`)
+
+### Visual Constants
+- Card Dimensions: `460px` max-width, `72vh` height (min 520px, max 700px)
+- Card Border-radius: `28px`
+- Glass blur: `6px` backdrop filter using `#liquid-glass-filter` SVG displacement map
+
+---
+
+## Part 2 — Raw Stylesheet Source Code
+
+```css
 /* @font-face definition for Riosark Typeface */
 @font-face {
   font-family: 'Riosark';
@@ -372,14 +404,6 @@ html, body {
   margin-bottom: 12px;
   position: relative;
   left: -5px;
-}
-
-.pressure-heading span {
-  display: inline-block;
-  transition: font-variation-settings 0.15s ease-out;
-  font-family: 'Mona Sans', 'Syne', sans-serif;
-  font-variation-settings: 'wght' 200, 'wdth' 75;
-  pointer-events: none;
 }
 
 .poster-sub-labels {
@@ -888,5 +912,4 @@ html, body {
     font-size: 1.4rem;
   }
 }
-
-
+```
