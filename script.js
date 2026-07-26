@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let shimmerTime = 0;
 
   function animateGlassRefraction() {
+    if (window.innerWidth <= 768) return; // Disable on mobile to save GPU
     shimmerTime += 0.01;
     
     // Modulate base frequencies subtly with sine waves
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updatePressureTypography() {
+    if (window.innerWidth <= 768) return; // Disable continuous polling on mobile
     letters.forEach(letter => {
       const rect = letter.getBoundingClientRect();
       const letterCenter = {

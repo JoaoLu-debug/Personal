@@ -889,4 +889,22 @@ html, body {
   }
 }
 
-
+/* MOBILE PERFORMANCE OPTIMIZATIONS */
+@media (max-width: 768px) {
+  /* Disable heavy SVG filters on mobile */
+  .glass-refraction-layer::before {
+    backdrop-filter: blur(8px) !important;
+  }
+  
+  /* Stop expensive CSS animations and reduce blur radius */
+  .fluid-blob {
+    animation: none !important;
+    filter: blur(15px) !important;
+  }
+  
+  /* Disable 3D tilt calculations for performance */
+  .portfolio-card {
+    transform: none !important;
+    transition: none !important;
+  }
+}
