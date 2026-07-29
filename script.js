@@ -158,4 +158,112 @@ document.addEventListener('DOMContentLoaded', () => {
   if (letters.length > 0) {
     updatePressureTypography();
   }
+
+  // --- 4. ASYNC FORM SUBMISSION (AJAX / FETCH) & MODAL FEEDBACK ---
+  const budgetForm = document.getElementById('budget-form');
+  const submitBtn = document.getElementById('form-submit-btn');
+  const modalOverlay = document.getElementById('feedback-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalActionBtn = document.getElementById('modal-action-btn');
+  const modalIconContainer = document.getElementById('modal-icon-container');
+  const modalTitle = document.getElementById('modal-title');
+  const modalMessage = document.getElementById('modal-message');
+
+  function openModal({ type, title, message, buttonText }) {
+    if (!modalOverlay) return;
+
+    modalIconContainer.className = `modal-icon-wrapper ${type}`;
+    if (type === 'success') {
+      modalIconContainer.innerHTML = `
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      `;
+    } else {
+      modalIconContainer.innerHTML = `
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      `;
+    }
+
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modalActionBtn.textContent = buttonText;
+
+    modalOverlay.classList.add('active');
+    modalOverlay.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove('active');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+  }
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modalActionBtn) modalActionBtn.addEventListener('click', closeModal);
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+  }
+
+  if (budgetForm) {
+    budgetForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!budgetForm.checkValidity()) {
+        budgetForm.reportValidity();
+        return;
+      }
+
+      const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+      const btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
+
+      // Loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+
+      const formData = new FormData(budgetForm);
+      const endpoint = budgetForm.action || 'https://formsubmit.co/ajax/ergosites.web@gmail.com';
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          budgetForm.reset();
+          openModal({
+            type: 'success',
+            title: 'Solicitação Enviada!',
+            message: 'Recebemos seu pedido de orçamento com sucesso! Entraremos em contato em breve.',
+            buttonText: 'Entendido'
+          });
+        } else {
+          throw new Error(`Status ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Erro ao enviar formulário:', error);
+        openModal({
+          type: 'error',
+          title: 'Falha no Envio',
+          message: 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.',
+          buttonText: 'Tentar Novamente'
+        });
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+      }
+    });
+  }
 });

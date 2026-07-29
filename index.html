@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ergo Web — Custom websites and video editing.">
+  <meta name="description" content="Ergo Web — Criação de sites e gestão de tráfego no Google Ads.">
   <title>Ergo Web</title>
   <!-- Google Fonts for brutalist/minimalist typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,7 +82,7 @@
               <div class="poster-main-title">
                 <h1 class="pressure-heading" id="phantom-heading"><span>E</span><span>r</span><span>g</span><span>o</span>&nbsp;<span>W</span><span>e</span><span>b</span></h1>
                 <div class="poster-sub-labels font-mono">
-                  <span>Criação de sites e edição de vídeo.</span>
+                  <span>Criação de sites e gestão de tráfego no Google Ads.</span>
                 </div>
               </div>
 
@@ -93,8 +93,8 @@
 
               <div class="poster-bottom-right font-mono">
                 <span>Conquiste sua presença digital: de sites profissionais</span>
-                <span>à edição de vídeo para o seu canal.</span>
-                <span>Visual moderno e vídeos dinâmicos.</span>
+                <span>à gestão de tráfego no Google Ads.</span>
+                <span>Visual moderno e campanhas de alta conversão.</span>
               </div>
             </div>
 
@@ -109,7 +109,7 @@
                 O que fazemos por você:
               </p>
               <p class="body-text">
-                Sites institucionais, landing pages, lojas virtuais e edição de vídeo profissional — projetados para atrair atenção, gerar confiança e transformar visitantes em clientes.
+                Sites institucionais, landing pages, lojas virtuais e gestão de tráfego no Google Ads — projetados para atrair atenção, gerar confiança e transformar visitantes em clientes.
               </p>
               
               <div class="manifesto-stats font-mono">
@@ -118,12 +118,12 @@
                   <span class="stat-label">Rápidos & Modernos</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-num">VÍDEO</span>
-                  <span class="stat-label">Edições Profissionais</span>
+                  <span class="stat-num">ADS</span>
+                  <span class="stat-label">Gestão de Google Ads</span>
                 </div>
                 <div class="stat-item">
                   <span class="stat-num">100%</span>
-                  <span class="stat-label">Satisfação do Cliente</span>
+                  <span class="stat-label">Foco em Resultados</span>
                 </div>
               </div>
             </div>
@@ -222,7 +222,10 @@
             <h2 class="section-title font-mono" style="font-size: 2rem; margin-bottom: 0.5rem; text-transform: none;">Solicite seu Orçamento</h2>
             <p class="lab-intro font-mono" style="margin-bottom: 2rem;">Preencha o formulário e entraremos em contato.</p>
 
-            <form action="https://formsubmit.co/ergosites.web@gmail.com" method="POST" class="contact-form">
+            <form id="budget-form" class="contact-form" action="https://formsubmit.co/ajax/ergosites.web@gmail.com" method="POST">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_subject" value="Novo Pedido de Orçamento - Ergo Web">
               <div class="form-group">
                 <label class="form-label font-mono">Nome</label>
                 <input type="text" name="nome" class="form-input" placeholder="Seu nome" required>
@@ -239,7 +242,16 @@
                 <label class="form-label font-mono">O que deseja para o seu site?</label>
                 <textarea name="mensagem" class="form-input form-textarea" placeholder="Descreva o tipo de site, funcionalidades, referências..." required></textarea>
               </div>
-              <button type="submit" class="form-submit font-mono">Enviar Pedido de Orçamento</button>
+              <button type="submit" id="form-submit-btn" class="form-submit font-mono">
+                <span class="btn-text">Enviar Pedido de Orçamento</span>
+                <span class="btn-spinner" style="display: none;">
+                  <svg class="spinner-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                    <path d="M12 2 a 10 10 0 0 1 10 10" stroke-linecap="round"></path>
+                  </svg>
+                  Enviando...
+                </span>
+              </button>
             </form>
 
             <footer class="card-footer font-mono">
@@ -257,6 +269,17 @@
       </div>
     </div>
   </main>
+
+  <!-- Modal de Feedback (Sucesso / Erro) -->
+  <div id="feedback-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="modal-close-btn" aria-label="Fechar">&times;</button>
+      <div class="modal-icon-wrapper" id="modal-icon-container"></div>
+      <h3 class="modal-title font-mono" id="modal-title"></h3>
+      <p class="modal-message" id="modal-message"></p>
+      <button type="button" class="modal-btn font-mono" id="modal-action-btn"></button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
