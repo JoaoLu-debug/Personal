@@ -897,22 +897,22 @@ html, body {
     display: none !important;
   }
   
-  /* Stop expensive CSS animations and reduce blur radius */
+/* Stop expensive CSS animations and reduce blur radius */
   .fluid-blob {
     animation: none !important;
     filter: blur(15px) !important;
-    display: none !important; /* Completely hide for maximum performance */
+    opacity: 0.7 !important;
   }
-  
+
   /* Disable 3D tilt calculations and heavy shadows */
   .portfolio-card {
     transform: none !important;
     transition: none !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important; /* Lighter shadow */
   }
-  
-  /* Disable ambient background glow (extremely heavy on mobile GPU) */
+
+  /* Reduce ambient glow for performance but keep visible */
   .ambient-glow {
-    display: none !important;
+    opacity: 0.3 !important;
   }
 }
