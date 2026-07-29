@@ -823,6 +823,80 @@ html, body {
   line-height: 1.4;
 }
 
+/* FORM STYLES */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.form-optional {
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(15, 78, 255, 0.1);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--text-dark);
+  color: var(--text-light);
+  border: none;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.form-submit:hover {
+  background: var(--accent-blue);
+  transform: translateY(-1px);
+}
+
+.form-submit:active {
+  transform: translateY(0);
+}
+
 /* SLEEK CUSTOM OUTSIDE SCROLLBAR */
 .card-scrollbar-track {
   position: absolute;

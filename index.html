@@ -217,17 +217,30 @@
             </p>
           </section>
 
-          <!-- SECTION 5: CONTACT & FOOTER -->
+          <!-- SECTION 6: PEDIDO DE ORÇAMENTO -->
           <section class="scroll-section contact-section" id="contact">
-            <h2 class="section-title font-mono" style="font-size: 2rem; margin-bottom: 0.5rem; text-transform: none;">Pronto para construir sua presença digital?</h2>
-            <p class="lab-intro font-mono" style="margin-bottom: 2rem;">Entre em contato e vamos criar juntos.</p>
-            
-            <div class="contact-methods">
-              <a href="mailto:contact@ergoweb.com" class="contact-link">
-                <span class="link-label font-mono">EMAIL</span>
-                <span class="link-val">contact@ergoweb.com</span>
-              </a>
-            </div>
+            <h2 class="section-title font-mono" style="font-size: 2rem; margin-bottom: 0.5rem; text-transform: none;">Solicite seu Orçamento</h2>
+            <p class="lab-intro font-mono" style="margin-bottom: 2rem;">Preencha o formulário e entraremos em contato.</p>
+
+            <form action="https://formsubmit.co/ergosites.web@gmail.com" method="POST" class="contact-form">
+              <div class="form-group">
+                <label class="form-label font-mono">Nome</label>
+                <input type="text" name="nome" class="form-input" placeholder="Seu nome" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label font-mono">E-mail</label>
+                <input type="email" name="email" class="form-input" placeholder="seu@email.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label font-mono">Telefone <span class="form-optional">(opcional)</span></label>
+                <input type="tel" name="telefone" class="form-input" placeholder="(XX) XXXXX-XXXX">
+              </div>
+              <div class="form-group">
+                <label class="form-label font-mono">O que deseja para o seu site?</label>
+                <textarea name="mensagem" class="form-input form-textarea" placeholder="Descreva o tipo de site, funcionalidades, referências..." required></textarea>
+              </div>
+              <button type="submit" class="form-submit font-mono">Enviar Pedido de Orçamento</button>
+            </form>
 
             <footer class="card-footer font-mono">
               <p>Design interativo de alta performance.</p>
