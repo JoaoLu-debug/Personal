@@ -228,19 +228,29 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnText) btnText.style.display = 'none';
       if (btnSpinner) btnSpinner.style.display = 'inline-flex';
 
-      const formData = new FormData(budgetForm);
-      const endpoint = budgetForm.action || 'https://formsubmit.co/ajax/ergosites.web@gmail.com';
+      const payload = {
+        nome: budgetForm.querySelector('[name="nome"]')?.value || '',
+        email: budgetForm.querySelector('[name="email"]')?.value || '',
+        telefone: budgetForm.querySelector('[name="telefone"]')?.value || 'Não informado',
+        mensagem: budgetForm.querySelector('[name="mensagem"]')?.value || '',
+        _captcha: "false",
+        _subject: "Novo Pedido de Orçamento - Ergo Web",
+        _template: "table"
+      };
 
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch('https://formsubmit.co/ajax/ergosites.web@gmail.com', {
           method: 'POST',
-          body: formData,
           headers: {
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
-          }
+          },
+          body: JSON.stringify(payload)
         });
 
-        if (response.ok) {
+        const data = await response.json().catch(() => ({}));
+
+        if (response.ok && (data.success === "true" || data.success === true)) {
           budgetForm.reset();
           openModal({
             type: 'success',
@@ -248,8 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
             message: 'Recebemos seu pedido de orçamento com sucesso! Entraremos em contato em breve.',
             buttonText: 'Entendido'
           });
+        } else if (data.message && data.message.toLowerCase().includes('activation')) {
+          openModal({
+            type: 'error',
+            title: 'Confirmação no Gmail Necessária',
+            message: 'O FormSubmit enviou um e-mail com o assunto "Activate Form" para ergosites.web@gmail.com. Clique no link do e-mail uma única vez para liberar o recebimento de mensagens!',
+            buttonText: 'Entendido'
+          });
         } else {
-          throw new Error(`Status ${response.status}`);
+          throw new Error(data.message || `Status ${response.status}`);
         }
       } catch (error) {
         console.error('Erro ao enviar formulário:', error);
