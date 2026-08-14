@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 1. 3D TILT & PARALLAX EFFECT ---
   let isMoving = false;
 
-  cardWrapper.addEventListener('mousemove', (e) => {
+  function onPointerMove(clientX, clientY) {
     isMoving = true;
     const rect = cardWrapper.getBoundingClientRect();
-    const x = e.clientX - rect.left; // x position within element
-    const y = e.clientY - rect.top;  // y position within element
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
     
     // Normalize coordinates (-0.5 to 0.5)
     const normX = (x / rect.width) - 0.5;
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Track cursor for spotlight effects
     card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
     card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-  });
+  }
 
-  cardWrapper.addEventListener('mouseleave', () => {
+  function onPointerLeave() {
     isMoving = false;
     
     const posterTitle = card.querySelector('.poster-main-title');
@@ -66,6 +66,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (posterTitle) posterTitle.style.transform = 'translate3d(0, 0, 0)';
     if (posterTopRight) posterTopRight.style.transform = 'translate3d(0, 0, 0)';
     if (posterBottomRight) posterBottomRight.style.transform = 'translate3d(0, 0, 0)';
+  }
+
+  // Mouse Listeners
+  cardWrapper.addEventListener('mousemove', (e) => {
+    onPointerMove(e.clientX, e.clientY);
+  });
+
+  cardWrapper.addEventListener('mouseleave', () => {
+    onPointerLeave();
+  });
+
+  // Touch Listeners
+  cardWrapper.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  cardWrapper.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  cardWrapper.addEventListener('touchend', () => {
+    onPointerLeave();
   });
 
 
@@ -121,15 +147,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- PRESSURE-SENSITIVE VARIABLE TYPOGRAPHY ---
   const letters = document.querySelectorAll('.pressure-heading span');
-  let mousePos = { x: 0, y: 0 };
+  let mousePos = { x: -9999, y: -9999 }; // Default far off-screen so letters start condensed
 
   window.addEventListener('mousemove', (e) => {
     mousePos.x = e.clientX;
     mousePos.y = e.clientY;
   });
 
+  // Track touches globally for typography pressure
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      mousePos.x = e.touches[0].clientX;
+      mousePos.y = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      mousePos.x = e.touches[0].clientX;
+      mousePos.y = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    mousePos.x = -9999;
+    mousePos.y = -9999;
+  });
+
   function updatePressureTypography() {
-    if (window.innerWidth <= 768) return; // Disable continuous polling on mobile
     letters.forEach(letter => {
       const rect = letter.getBoundingClientRect();
       const letterCenter = {
