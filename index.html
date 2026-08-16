@@ -54,11 +54,7 @@
     <!-- Centered Card Wrapper for 3D Tilt calculation -->
     <div class="card-wrapper" id="card-wrapper">
       
-      <!-- Card Label/Title (Floating context header) -->
-      <div class="card-metadata-header">
-        <span class="meta-label">ERGO WEB // ARQUIVO</span>
-        <span class="meta-date">EST. 27-3-15</span>
-      </div>
+
 
       <!-- The Main Interactive Card -->
       <article class="glass-panel portfolio-card" id="portfolio-card">
@@ -84,9 +80,7 @@
               <div class="poster-top-right font-mono">
               </div>
               
-              <div class="poster-date font-mono">
-                <span>27-3-15</span>
-              </div>
+
 
               <!-- Main Typographic Title -->
               <div class="poster-main-title">
@@ -119,7 +113,7 @@
                 O que fazemos por você:
               </p>
               <p class="body-text">
-                Sites institucionais, landing pages, lojas virtuais e gestão de tráfego no Google Ads — projetados para atrair atenção, gerar confiança e transformar visitantes em clientes.
+                Landing pages, lojas virtuais, projetos personalizados e gestão de tráfego no Google Ads — projetados para atrair atenção, gerar confiança e transformar visitantes em clientes.
               </p>
               
               <div class="manifesto-stats font-mono">
@@ -146,26 +140,10 @@
             <div class="projects-list">
               <div class="project-item">
                 <div class="project-meta font-mono">WEB</div>
-                <h3 class="project-title">Site Institucional</h3>
-                <p class="project-desc">Ideal para empresas que precisam apresentar seus serviços, diferenciais, estrutura, localização e canais de atendimento.</p>
-                <div class="project-tags font-mono">
-                  <span>Institucional</span><span>Responsivo</span>
-                </div>
-              </div>
-              <div class="project-item">
-                <div class="project-meta font-mono">WEB</div>
                 <h3 class="project-title">Landing Page</h3>
                 <p class="project-desc">Página focada em campanhas, captação de contatos ou divulgação de um serviço específico.</p>
                 <div class="project-tags font-mono">
                   <span>Conversão</span><span>Campanha</span>
-                </div>
-              </div>
-              <div class="project-item">
-                <div class="project-meta font-mono">WEB</div>
-                <h3 class="project-title">Hotsite</h3>
-                <p class="project-desc">A solução ideal para campanhas, eventos, promoções e ações temporárias.</p>
-                <div class="project-tags font-mono">
-                  <span>Temporário</span><span>Campanha</span>
                 </div>
               </div>
               <div class="project-item">
@@ -265,8 +243,16 @@
                 <input type="tel" name="telefone" class="form-input" placeholder="(XX) XXXXX-XXXX">
               </div>
               <div class="form-group">
-                <label class="form-label font-mono">O que deseja para o seu site?</label>
-                <textarea name="mensagem" class="form-input form-textarea" placeholder="Descreva o tipo de site, funcionalidades, referências..." required></textarea>
+                <label class="form-label font-mono">O que você precisa melhorar no seu negócio?</label>
+                <select name="mensagem" class="form-input" required>
+                  <option value="" disabled selected hidden>Selecione uma opção...</option>
+                  <option value="Quero um site novo">Quero um site novo</option>
+                  <option value="Meu site atual não gera clientes">Meu site atual não gera clientes</option>
+                  <option value="Quero aparecer no Google">Quero aparecer no Google</option>
+                  <option value="Quero anunciar no Google">Quero anunciar no Google</option>
+                  <option value="Quero vender pela internet">Quero vender pela internet</option>
+                  <option value="Ainda não sei">Ainda não sei</option>
+                </select>
               </div>
               <button type="submit" id="form-submit-btn" class="form-submit font-mono">
                 <span class="btn-text">Enviar Pedido de Orçamento</span>
