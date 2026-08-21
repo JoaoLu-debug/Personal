@@ -197,7 +197,82 @@
             </div>
           </section>
 
-          <!-- SECTION 5: SOLUÇÃO WEB -->
+          <!-- SECTION 5: PORTFÓLIO DE MODELOS -->
+          <section class="scroll-section works-section" id="portfolio">
+            <h2 class="section-title">Modelos de Sites</h2>
+            <p class="lab-intro font-mono" style="margin-bottom: 1.5rem; text-transform: none;">
+              Explore nossos modelos interativos navegando pelas pastas do arquivo abaixo.
+            </p>
+
+            <div class="explorer-container">
+              <!-- Sidebar Explorer Tree -->
+              <div class="explorer-tree font-mono">
+                <div class="tree-node root-node" id="node-root">
+                  <span class="folder-toggle">▼</span>
+                  <span class="icon">📁</span>
+                  <span class="node-name">Modelos</span>
+                </div>
+                
+                <div class="tree-children" id="children-root">
+                  <!-- Arquiteto Folder -->
+                  <div class="tree-node folder-node" id="node-arquiteto" data-target="arquiteto">
+                    <span class="folder-toggle">▶</span>
+                    <span class="icon">📁</span>
+                    <span class="node-name">Arquiteto</span>
+                  </div>
+                  <div class="tree-children hidden" id="children-arquiteto">
+                    <div class="tree-node file-node" data-image="images/arquiteto-1.png" data-title="Arquitetura - Home" data-desc="Design minimalista e funcionalista focado em estúdios de arquitetura.">
+                      <span class="icon">📄</span>
+                      <span class="node-name">home-arquiteto.png</span>
+                    </div>
+                    <div class="tree-node file-node" data-image="images/arquiteto-2.png" data-title="Arquitetura - Projetos" data-desc="Grade de projetos limpa com estatísticas detalhadas e métricas construídas.">
+                      <span class="icon">📄</span>
+                      <span class="node-name">projetos-arquiteto.png</span>
+                    </div>
+                  </div>
+
+                  <!-- Dentista Folder -->
+                  <div class="tree-node folder-node" id="node-dentista" data-target="dentista">
+                    <span class="folder-toggle">▶</span>
+                    <span class="icon">📁</span>
+                    <span class="node-name">Dentista</span>
+                  </div>
+                  <div class="tree-children hidden" id="children-dentista">
+                    <div class="tree-node file-node" data-image="images/dentista-1.png" data-title="Dentista - Home" data-desc="Design moderno focado em conversão e bem-estar para consultórios odontológicos.">
+                      <span class="icon">📄</span>
+                      <span class="node-name">home-dentista.png</span>
+                    </div>
+                    <div class="tree-node file-node" data-image="images/dentista-2.png" data-title="Dentista - Agendamento" data-desc="Formulário de agendamento de consultas integrado e intuitivo.">
+                      <span class="icon">📄</span>
+                      <span class="node-name">agendamento-dentista.png</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Preview Panel -->
+              <div class="explorer-preview">
+                <div class="preview-empty" id="preview-empty">
+                  <span class="preview-empty-icon">🔍</span>
+                  <span class="font-mono">Selecione um arquivo para pré-visualizar</span>
+                </div>
+                <div class="preview-content hidden" id="preview-content">
+                  <div class="preview-header">
+                    <h4 id="preview-title" class="font-mono"></h4>
+                    <p id="preview-desc" class="preview-description"></p>
+                  </div>
+                  <div class="preview-frame">
+                    <img id="preview-img" src="" alt="Preview">
+                    <div class="preview-overlay">
+                      <span class="font-mono">Clique para Ampliar</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION 6: SOLUÇÃO WEB -->
           <section class="scroll-section synth-section" id="lab">
             <h2 class="section-title" style="font-size: 2rem;">Solução web para o seu negócio</h2>
             
@@ -282,6 +357,13 @@
       </div>
     </div>
   </main>
+
+  <!-- Lightbox Modal for Fullscreen Image Preview -->
+  <div class="lightbox-modal hidden" id="lightbox-modal">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="Fullscreen Preview">
+    <div id="lightbox-caption" class="font-mono"></div>
+  </div>
 
   <!-- Modal de Feedback (Sucesso / Erro) -->
   <div id="feedback-modal" class="modal-overlay" aria-hidden="true">

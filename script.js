@@ -328,4 +328,100 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // --- 5. PORTFOLIO FILE EXPLORER & LIGHTBOX ---
+  const nodeRoot = document.getElementById('node-root');
+  const childrenRoot = document.getElementById('children-root');
+  const nodeArquiteto = document.getElementById('node-arquiteto');
+  const childrenArquiteto = document.getElementById('children-arquiteto');
+  const nodeDentista = document.getElementById('node-dentista');
+  const childrenDentista = document.getElementById('children-dentista');
+  
+  const fileNodes = document.querySelectorAll('.file-node');
+  const previewEmpty = document.getElementById('preview-empty');
+  const previewContent = document.getElementById('preview-content');
+  const previewImg = document.getElementById('preview-img');
+  const previewTitle = document.getElementById('preview-title');
+  const previewDesc = document.getElementById('preview-desc');
+  
+  const lightboxModal = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  // Toggle Root Folder
+  if (nodeRoot && childrenRoot) {
+    nodeRoot.addEventListener('click', () => {
+      nodeRoot.classList.toggle('open');
+      childrenRoot.classList.toggle('hidden');
+    });
+  }
+
+  // Toggle Arquiteto Folder
+  if (nodeArquiteto && childrenArquiteto) {
+    nodeArquiteto.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent root toggle trigger
+      nodeArquiteto.classList.toggle('open');
+      childrenArquiteto.classList.toggle('hidden');
+    });
+  }
+
+  // Toggle Dentista Folder
+  if (nodeDentista && childrenDentista) {
+    nodeDentista.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent root toggle trigger
+      nodeDentista.classList.toggle('open');
+      childrenDentista.classList.toggle('hidden');
+    });
+  }
+
+  // File Node Click Selection
+  fileNodes.forEach(node => {
+    node.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent folder toggle trigger
+      
+      // Toggle active states
+      fileNodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+      
+      // Update preview panel details
+      const imgPath = node.getAttribute('data-image');
+      const title = node.getAttribute('data-title');
+      const desc = node.getAttribute('data-desc');
+      
+      if (previewEmpty && previewContent && previewImg && previewTitle && previewDesc) {
+        previewEmpty.classList.add('hidden');
+        previewContent.classList.remove('hidden');
+        previewImg.src = imgPath;
+        previewTitle.textContent = title;
+        previewDesc.textContent = desc;
+      }
+    });
+  });
+
+  // Lightbox Modal Logic
+  const previewFrame = document.querySelector('.preview-frame');
+  if (previewFrame && lightboxModal && lightboxImg && lightboxCaption) {
+    previewFrame.addEventListener('click', () => {
+      if (previewImg.src && !previewContent.classList.contains('hidden')) {
+        lightboxImg.src = previewImg.src;
+        lightboxCaption.textContent = `${previewTitle.textContent} — ${previewDesc.textContent}`;
+        lightboxModal.classList.remove('hidden');
+      }
+    });
+  }
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', () => {
+      lightboxModal.classList.add('hidden');
+    });
+  }
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal || e.target === lightboxClose) {
+        lightboxModal.classList.add('hidden');
+      }
+    });
+  }
 });
