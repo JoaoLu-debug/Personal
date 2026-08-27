@@ -296,6 +296,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json().catch(() => ({}));
 
         if (response.ok && (data.success === "true" || data.success === true)) {
+          // Dispara os eventos de conversão do Google (GA4 e Google Ads)
+          if (typeof gtag === 'function') {
+            // Evento padrão do GA4 para Leads
+            gtag('event', 'generate_lead', {
+              'event_category': 'Contato',
+              'event_label': 'Pedido de Orçamento'
+            });
+
+            // Evento de conversão para o Google Ads
+            gtag('event', 'conversion', {
+              'send_to': 'AW-18357336121'
+            });
+          }
+
           budgetForm.reset();
           openModal({
             type: 'success',
